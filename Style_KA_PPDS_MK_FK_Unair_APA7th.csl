@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="id-ID">
+  <info>
+    <title>Style Sitasi KA PPDS MK FK Unair - APA 7th Base</title>
+    <title-short>APA7th-PPDS_MK</title-short>
+    <id>http://csl.mendeley.com/styles/474826761/apa</id>
+    <link href="http://www.zotero.org/styles/apa" rel="self"/>
+    <link href="http://www.zotero.org/styles/apa-6th-edition" rel="template"/>
+    <link href="https://apastyle.apa.org/style-grammar-guidelines/references/examples" rel="documentation"/>
+    <author>
+      <name>dr. Irfan Arif Ikhwani, Sp.MK</name>
+      <email>dr.irfan.arif@gmail.com</email>
+    </author>
+    <category citation-format="author-date"/>
+    <updated>2025-12-29T12:00:00+00:00</updated>
+  </info>
+
+  <locale xml:lang="id">
+    <terms>
+      <term name="and">dan</term>
+      <term name="et-al">dkk.</term>
+      <term name="in">dalam</term>
+      <term name="edition" form="short">ed.</term>
+      <term name="edition">edisi</term>
+      <term name="editor" form="short">
+        <single>penyunting</single>
+        <multiple>penyunting</multiple>
+      </term>
+      <term name="no date" form="short">t.th.</term>
+      <term name="retrieved">diambil pada</term>
+      <term name="from">dari</term>
+      <term name="accessed">diakses pada</term>
+      <term name="page" form="short">hal.</term>
+      <term name="director" form="short">sutradara</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" and="symbol" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text variable="title" font-style="italic"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="symbol" delimiter=", " initialize-with=". "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <choose>
+          <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+            <text variable="title" form="short" font-style="italic"/>
+          </if>
+          <else>
+            <text variable="title" form="short" quotes="true"/>
+          </else>
+        </choose>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued-full">
+    <choose>
+      <if variable="issued">
+        <choose>
+          <if type="article-newspaper article-magazine post-weblog post broadcast motion_picture paper-conference speech" match="any">
+            <date variable="issued">
+              <date-part name="year"/>
+              <date-part name="month" prefix=", "/>
+              <date-part name="day" prefix=" "/>
+            </date>
+          </if>
+          <else>
+            <date variable="issued">
+              <date-part name="year"/>
+            </date>
+          </else>
+        </choose>
+      </if>
+      <else>
+        <text term="no date" form="short"/>
+      </else>
+    </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+        <group delimiter=" ">
+          <label variable="locator" form="short"/>
+          <text variable="locator"/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true" et-al-min="21" et-al-use-first="19" entry-spacing="0" line-spacing="2">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+      <key variable="title"/>
+    </sort>
+    <layout suffix=".">
+      <group delimiter=". ">
+        <text macro="author"/>
+        <text macro="issued-full" prefix="(" suffix=")"/>
+        <group>
+          <text variable="title" font-style="italic"/>
+          <choose>
+            <if type="thesis" match="any">
+              <text variable="genre" prefix=" [" suffix="]"/>
+            </if>
+            <else-if type="post-weblog post" match="any">
+              <text value="Post" prefix=" [" suffix="]"/>
+            </else-if>
+            <else-if variable="medium" match="any">
+              <text variable="medium" prefix=" [" suffix="]"/>
+            </else-if>
+          </choose>
+        </group>
+        <group delimiter=", ">
+          <choose>
+            <if type="chapter paper-conference" match="any">
+              <group delimiter=" ">
+                <text term="in" text-case="capitalize-first"/>
+                <names variable="editor translator" delimiter=", ">
+                  <name and="symbol" initialize-with=". " delimiter=", "/>
+                  <label form="short" prefix=" (" suffix=")"/>
+                </names>
+                <text variable="container-title" font-style="italic"/>
+              </group>
+              <text variable="page" prefix="pp. "/>
+            </if>
+            <else>
+              <group delimiter=", ">
+                <text variable="container-title" font-style="italic"/>
+                <text variable="volume" font-style="italic"/>
+                <text variable="issue" prefix="(" suffix=")"/>
+                <text variable="page"/>
+              </group>
+            </else>
+          </choose>
+        </group>
+        <text variable="publisher"/>
+      </group>
+      <choose>
+        <if variable="DOI">
+          <text variable="DOI" prefix=" https://doi.org/"/>
+        </if>
+        <else-if variable="URL">
+          <group prefix=" ">
+            <choose>
+              <if variable="accessed">
+                <group delimiter=" ">
+                  <text term="retrieved" text-case="capitalize-first"/>
+                  <date variable="accessed">
+                    <date-part name="day" suffix=" "/>
+                    <date-part name="month" suffix=" "/>
+                    <date-part name="year"/>
+                  </date>
+                  <text term="from"/>
+                </group>
+              </if>
+            </choose>
+            <text variable="URL"/>
+          </group>
+        </else-if>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
